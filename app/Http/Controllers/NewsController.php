@@ -158,10 +158,10 @@ class NewsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'image' => 'image',
-            'icon' => 'required',
-            'title.*' => 'required',
-            'body.*' => 'required',
+            //'image' => 'required',
+            //'icon' => 'required',
+            'additional_title.*' => 'required',
+            'additional_body.*' => 'required',
         ]);
 
 
@@ -171,10 +171,10 @@ class NewsController extends Controller
 //        dd($request->all());
 
         //        get form image
-        $image = $request->file('image');
+         $image = $request->file('image');
         $icon = $request->file('icon');
         $slug = str_slug($request->title);
-        if (isset($image))
+       if (isset($image))
         {
 //          make unique name for image
             $currentDate = Carbon::now()->toDateString();
@@ -228,21 +228,24 @@ class NewsController extends Controller
 
 
         $news->title = $request->title;
-        $news->slug = Str::slug(trim($request->title));
+		//$news->slug = Str::slug(trim($request->title));
         $news->body = $request->body;
-        $news->image = $imageName;
-        $news->icon = $iconName;
+        //$news->image = $imageName;
+        //$news->icon = $iconName;
+		$news->image = '1.jpg';
+        $news->icon = '2.jpg';
 
-//        dd($request->all());
+       //dd($request->all());
 
         $news->save();
 
 
 
-        foreach($request->additional_news_ids as $key => $additional_news_id){
+        foreach($request->additional_news_id as $key => $additional_news_id){
             $additional_news = AdditionalNews::find($additional_news_id);
-            $additional_news->title = $request->title[$key];
-            $additional_news->body = $request->body[$key];
+			//dd($additional_news);
+            $additional_news->title = $request->additional_title[$key];
+            $additional_news->body = $request->additional_body[$key];
             $additional_news->save();
         }
 

@@ -45,17 +45,17 @@
 {{--                        <div class="repeater">--}}
 {{--                            <div data-repeater-list="group-a">--}}
                                 @foreach($news->additional_news as $add_news)
-                                    <input type="hidden" name="additional_news_id" value="{{ $add_news->id }}">
+                                    <input type="hidden" name="additional_news_id[]" value="{{ $add_news->id }}">
                                 <div data-repeater-item>
                                     <div class="form-group">
                                         <label class="control-label">Title</label>
-                                        <input class="form-control" type="text" name="additional_title" value="{{ $add_news->title }}">
+                                        <input class="form-control" type="text" name="additional_title[]" value="{{ $add_news->title }}">
                                         <span class="text-danger">{{ $errors->has('title') ? $errors->first('title') : '' }}</span>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="control-label">Body</label>
-                                        <textarea class="form-control" rows="8" name="additional_body" placeholder="" >{{ $add_news->body }}</textarea>
+                                        <textarea class="form-control" rows="8" name="additional_body[]" placeholder="" >{{ $add_news->body }}</textarea>
                                         <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
                                     </div>
                                     <a class="btn btn-danger float-right" data-repeater-delete style="margin-bottom: 8px;">
