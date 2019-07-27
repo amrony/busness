@@ -56,10 +56,19 @@ Route::get('/article/sub/category/show', 'ArticleSubCategoryController@show')->n
 Route::get('/news/body', 'ArticleSubCategoryController@news_body')->name('news-body');
 
 
-Route::get('/article/category/news', 'ArticleCategoryNewsController@index')->name('article-category-news');
-Route::get('/article/category/show', 'ArticleCategoryNewsController@show')->name('view-article-news');
+//Route::get('/article/category/news', 'ArticleCategoryNewsController@index')->name('article-category-news');
+//Route::get('/article/category/show', 'ArticleCategoryNewsController@show')->name('view-article-news');
+//Route::post('/article/category/store', 'ArticleCategoryNewsController@store')->name('add-article-news');
+
+Route::resource('article-category', 'ArticleCategoryNewsController');
+Route::get('/article/news/category/delete/{id}', 'ArticleCategoryNewsController@destroy')->name('article-category-delete');
+
+Route::resource('news','NewsController');
 
 
+Route::get('a',function (){
+    return view('admin.article-category-news.a');
+});
 
 
 

@@ -14,7 +14,8 @@ class ArticleCategoryNewsController extends Controller
      */
     public function index()
     {
-        return view('admin.article-category-news.add-news');
+        $articleCategories = ArticleCategoryNews::all();
+        return view('admin.article-category-news.view-news', compact('articleCategories'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ArticleCategoryNewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.article-category-news.add-news');
     }
 
     /**
@@ -35,18 +36,28 @@ class ArticleCategoryNewsController extends Controller
      */
     public function store(Request $request)
     {
-        // create new task
-        $rows = $request->input('rows');
-        foreach ($rows as $row)
-        {
-            $articleNews[] = new ArticleCategoryNews(array(
-                'title'=>$row['title'],
-                'subtitle'=>$row['subtitle'],
-                'image'=>$row['image'],
 
-            ));
+        $this->validate($request, [
+            'title.*' => 'required',
+            'sub_title.*' => 'required',
+            'body.*' => 'required',
+        ]);
+//        dd($request->input('group-a'));
+
+//        $a = $request->title;
+        foreach ($request->input('group-a') as $key => $v){
+//dd($v['title']);
+
+            $articleCategories = new ArticleCategoryNews();
+            $articleCategories->title = $v['title'];
+            $articleCategories->sub_title = $v['sub_title'];
+            $articleCategories->body = $v['body'];
+
+            $articleCategories->save();
         }
-        ArticleCategoryNews::create($articleNews);
+
+
+        return redirect('/article-category')->with('message', 'Insert Successfully');
 
 
     }
@@ -59,7 +70,7 @@ class ArticleCategoryNewsController extends Controller
      */
     public function show(ArticleCategoryNews $articleCategoryNews)
     {
-        return view('admin.article-category-news.view-news');
+//        return view('admin.article-category-news.view-news');
     }
 
     /**
@@ -68,9 +79,10 @@ class ArticleCategoryNewsController extends Controller
      * @param  \App\ArticleCategoryNews  $articleCategoryNews
      * @return \Illuminate\Http\Response
      */
-    public function edit(ArticleCategoryNews $articleCategoryNews)
+    public function edit($id)
     {
-        //
+        $articleCategoryNews = ArticleCategoryNews::find($id);
+        return view('admin.article-category-news.edit-news', compact('articleCategoryNews'));
     }
 
     /**
@@ -80,9 +92,16 @@ class ArticleCategoryNewsController extends Controller
      * @param  \App\ArticleCategoryNews  $articleCategoryNews
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ArticleCategoryNews $articleCategoryNews)
+    public function update(Request $request, $id)
     {
-        //
+       $articleCategory =  ArticleCategoryNews::find($id);
+
+        $articleCategory->title = $request->title;
+        $articleCategory->sub_title = $request->sub_title;
+        $articleCategory->body = $request->body;
+        $articleCategory->save();
+
+        return redirect('/article-category')->with('message', 'Update Successfully');
     }
 
     /**
@@ -91,8 +110,11 @@ class ArticleCategoryNewsController extends Controller
      * @param  \App\ArticleCategoryNews  $articleCategoryNews
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ArticleCategoryNews $articleCategoryNews)
+    public function destroy($id)
     {
-        //
+        $articleCategory = ArticleCategoryNews::find($id);
+        $articleCategory->delete();
+
+        return redirect('/article-category')->with('message', 'Delete Successfully');
     }
 }
