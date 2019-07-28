@@ -228,6 +228,15 @@ class NewsController extends Controller
             $additional_news->body = $request->additional_body[$key];
             $additional_news->save();
         }
+		//dd($request->all());
+		foreach($request->add_additional_title as $key => $add_addition_title){
+			$additional_news = new AdditionalNews;
+			//dd($additional_news);
+			$additional_news->news_id = $news->id;
+            $additional_news->title = $add_addition_title;
+            $additional_news->body = $request->add_additional_body[$key];
+            $additional_news->save();
+		}
 
         return redirect('/news')->with('message', 'Update Successfully');
     }

@@ -45,26 +45,28 @@
                         <div class="r-group">
                             <div class="additional_news" style="padding-top: 20px;">
                                 <h3 class="tile-title">Additional News</h3>
-                                    @foreach($news->additional_news as $add_news) @endforeach
+                                    @foreach($news->additional_news as $add_news)
                                         <input type="hidden" name="additional_news_id[]" value="{{ $add_news->id }}">
                                     <div data-repeater-item>
                                         <div class="form-group">
                                             <label class="control-label">Title</label>
-                                            <input class="form-control" type="text" name="additional_title[]">
+                                            <input class="form-control" type="text" name="additional_title[]" value="{{ $add_news->title }}">
                                             <span class="text-danger">{{ $errors->has('title') ? $errors->first('title') : '' }}</span>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label">Body</label>
-                                            <textarea class="form-control" rows="8" name="additional_body[]" placeholder="" ></textarea>
+                                            <textarea class="form-control" rows="8" name="additional_body[]" placeholder="" >{{ $add_news->body }}</textarea>
                                             <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
                                         </div>
                                     </div>
-{{--                                @endforeach--}}
+									@endforeach
                             </div>
                             <button type="button" class="r-btnAdd">Add +</button>
                             <button type="button" class="r-btnRemove">Remove -</button>
                         </div>
+						<div id="edit_add">
+						</div>
                     </div>
 
                     <div class="">
@@ -80,11 +82,11 @@
 
 
 @section('js_attach')
-    <script src="{{ asset('js/repeater/jquery.form-repeater.js') }}"></script>
-{{--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--}}
-    <script src="jquery.form-repeater.js"></script>
+<!--    <script src="{{ asset('js/repeater/jquery.form-repeater.js') }}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="jquery.form-repeater.js"></script>-->
     <script>
-        $('.body').repeater({
+        /*$('.body').repeater({
             btnAddClass: 'r-btnAdd',
             btnRemoveClass: 'r-btnRemove',
             groupClass: 'r-group',
@@ -98,7 +100,8 @@
             animationSpeed: 400,
             animationEasing: 'swing',
             clearValues: true
-        },
+        }
+		,
         [
                 @foreach($news->additional_news as $add_news)
             {
@@ -108,7 +111,35 @@
                 // "vehicle[0][type]": "type1"
             },
             @endforeach
-        ]);
+        ]
+		
+		);*/
+		
+		$(document).ready(function(){
+		
+			
+		
+			$('.r-btnAdd').on('click', function(){
+			var newDiv = '<div id="added_new_div"><div class="form-group">'+
+                                            '<label class="control-label">Title</label>'+
+                                            '<input class="form-control" type="text" name="add_additional_title[]">'+
+                                            
+                                        '</div>'+
+
+                                        '<div class="form-group">'+
+                                            '<label class="control-label">Body</label>'+
+                                            '<textarea class="form-control" rows="8" name="add_additional_body[]" placeholder="" ></textarea>'+
+                                            '<span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>'+
+                                        '</div></div>';
+		
+				$('#edit_add').append(newDiv);
+			});
+			
+			
+			$('.r-btnRemove').on('click', function(){
+				$('#edit_add #added_new_div:last').remove();
+			});
+		});
     </script>
 
 @endsection
