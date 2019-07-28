@@ -40,34 +40,31 @@
                             <img class="img-responsive thumbnail" src="{{ url('storage/icon/'.$news->icon) }}" height="100" width="150">
                         </div>
 
-                    <div class="additional_news" style="padding-top: 20px;">
-                        <h3 class="tile-title">Additional News</h3>
-{{--                        <div class="repeater">--}}
-{{--                            <div data-repeater-list="group-a">--}}
-                                @foreach($news->additional_news as $add_news)
-                                    <input type="hidden" name="additional_news_id[]" value="{{ $add_news->id }}">
-                                <div data-repeater-item>
-                                    <div class="form-group">
-                                        <label class="control-label">Title</label>
-                                        <input class="form-control" type="text" name="additional_title[]" value="{{ $add_news->title }}">
-                                        <span class="text-danger">{{ $errors->has('title') ? $errors->first('title') : '' }}</span>
+
+                    <div class="body">
+                        <div class="r-group">
+                            <div class="additional_news" style="padding-top: 20px;">
+                                <h3 class="tile-title">Additional News</h3>
+                                    @foreach($news->additional_news as $add_news) @endforeach
+                                        <input type="hidden" name="additional_news_id[]" value="{{ $add_news->id }}">
+                                    <div data-repeater-item>
+                                        <div class="form-group">
+                                            <label class="control-label">Title</label>
+                                            <input class="form-control" type="text" name="additional_title[]">
+                                            <span class="text-danger">{{ $errors->has('title') ? $errors->first('title') : '' }}</span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Body</label>
+                                            <textarea class="form-control" rows="8" name="additional_body[]" placeholder="" ></textarea>
+                                            <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
+                                        </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label">Body</label>
-                                        <textarea class="form-control" rows="8" name="additional_body[]" placeholder="" >{{ $add_news->body }}</textarea>
-                                        <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
-                                    </div>
-{{--                                    <a class="btn btn-danger float-right" data-repeater-delete style="margin-bottom: 8px;">--}}
-{{--                                        <span class="fa fa-trash-o"></span>--}}
-{{--                                    </a>--}}
-                                </div>
-                                    @endforeach
-
-{{--                            <div class="float-right" style="margin-bottom: 10px; padding-right: 5px;">--}}
-{{--                                <input class="btn btn-info" data-repeater-create type="button" value="+"/>--}}
-{{--                            </div>--}}
-
+{{--                                @endforeach--}}
+                            </div>
+                            <button type="button" class="r-btnAdd">Add +</button>
+                            <button type="button" class="r-btnRemove">Remove -</button>
+                        </div>
                     </div>
 
                     <div class="">
@@ -80,42 +77,39 @@
 
 
 
+
+
 @section('js_attach')
-
-{{--    <script--}}
-{{--            src="https://code.jquery.com/jquery-3.4.1.js"--}}
-{{--            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="--}}
-{{--            crossorigin="anonymous"></script>--}}
-
-{{--    <script src="{{ asset('js/repeater/jquery.repeater.js') }}"></script>--}}
-
-{{--    <script>--}}
-{{--        $(document).ready(function () {--}}
-{{--            'use strict';--}}
-
-{{--            $('.repeater').repeater({--}}
-{{--                // defaultValues: {--}}
-{{--                //     'textarea-input': 'foo',--}}
-{{--                //     'text-input': 'bar[]',--}}
-{{--                //     'select-input': 'B',--}}
-{{--                //     'checkbox-input': ['A', 'B'],--}}
-{{--                //     'radio-input': 'B'--}}
-{{--                // },--}}
-{{--                show: function () {--}}
-{{--                    $(this).slideDown();--}}
-{{--                },--}}
-{{--                hide: function (deleteElement) {--}}
-{{--                    if(confirm('Are you sure you want to delete this element?')) {--}}
-{{--                        $(this).slideUp(deleteElement);--}}
-{{--                    }--}}
-{{--                },--}}
-{{--                ready: function (setIndexes) {--}}
-
-{{--                }--}}
-{{--            });--}}
-
-{{--        });--}}
-{{--    </script>--}}
+    <script src="{{ asset('js/repeater/jquery.form-repeater.js') }}"></script>
+{{--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--}}
+    <script src="jquery.form-repeater.js"></script>
+    <script>
+        $('.body').repeater({
+            btnAddClass: 'r-btnAdd',
+            btnRemoveClass: 'r-btnRemove',
+            groupClass: 'r-group',
+            minItems: 1,
+            maxItems: 0,
+            startingIndex: 0,
+            showMinItemsOnLoad: false,
+            reindexOnDelete: true,
+            repeatMode: 'append',
+            animation: null,
+            animationSpeed: 400,
+            animationEasing: 'swing',
+            clearValues: true
+        },
+        [
+                @foreach($news->additional_news as $add_news)
+            {
+                "additional_news_id[]": '{{ $add_news->id }}',
+                "additional_title[]": '{{ $add_news->title }}',
+                "additional_body[]": '{{ $add_news->title }}',
+                // "vehicle[0][type]": "type1"
+            },
+            @endforeach
+        ]);
+    </script>
 
 @endsection
 

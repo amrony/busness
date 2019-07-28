@@ -67,9 +67,9 @@ Route::resource('news','NewsController');
 Route::get('news/delete/{id}', 'NewsController@destroy')->name('news-delete');
 
 
-//Route::get('a',function (){
-//    return view('admin.article-category-news.a');
-//});
+Route::get('a',function (){
+    return view('admin.article-category-news.a');
+});
 
 
 

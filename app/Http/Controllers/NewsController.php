@@ -214,8 +214,7 @@ class NewsController extends Controller
         $news->body = $request->body;
         $news->image = $imageName;
         $news->icon = $iconName;
-//		$news->image = '1.jpg';
-////        $news->icon = '2.jpg';
+
 
 
         $news->save();
