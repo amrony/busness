@@ -64,11 +64,12 @@ Route::resource('article-category', 'ArticleCategoryNewsController');
 Route::get('/article/news/category/delete/{id}', 'ArticleCategoryNewsController@destroy')->name('article-category-delete');
 
 Route::resource('news','NewsController');
+Route::get('news/delete/{id}', 'NewsController@destroy')->name('news-delete');
 
 
-Route::get('a',function (){
-    return view('admin.article-category-news.a');
-});
+//Route::get('a',function (){
+//    return view('admin.article-category-news.a');
+//});
 
 
 

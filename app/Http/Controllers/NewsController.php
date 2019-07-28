@@ -49,7 +49,6 @@ class NewsController extends Controller
             'title.*' => 'required',
             'body.*' => 'required',
         ]);
-
         //        get form image
         $image = $request->file('image');
         $icon = $request->file('icon');
@@ -59,17 +58,14 @@ class NewsController extends Controller
 //          make unique name for image
             $currentDate = Carbon::now()->toDateString();
             $imageName = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-
 //                check category directory is exists
             if (!Storage::disk('public')->exists('news'))
             {
                 Storage::disk('public')->makeDirectory('news');
             }
 //                resize image for category and upload
-
-            $news = Image::make($image)->resize(1600,479)->stream();
-            Storage::disk('public')->put('news/'.$imageName,$news);
-
+            $newsImage = Image::make($image)->resize(1600,479)->stream();
+            Storage::disk('public')->put('news/'.$imageName,$newsImage);
         }else{
             $imageName = "default.png";
         }
@@ -78,47 +74,35 @@ class NewsController extends Controller
             //          make unique name for image
             $currentDate = Carbon::now()->toDateString();
             $iconName = $slug.'-'.$currentDate.'-'.uniqid().'.'.$icon->getClientOriginalExtension();
-
             //                check category directory is exists
             if (!Storage::disk('public')->exists('icon'))
             {
                 Storage::disk('public')->makeDirectory('icon');
             }
             //                resize image for category and upload
-
-            $icon = Image::make($icon)->resize(1600,479)->stream();
-            Storage::disk('public')->put('icon/'.$iconName,$icon);
+            $iconImage = Image::make($icon)->resize(1600,479)->stream();
+            Storage::disk('public')->put('icon/'.$iconName,$iconImage);
         }else{
             $iconName = "default.png";
         }
-
         $news = new  News();
         $news->title = $request->title;
         $news->slug = Str::slug(trim($request->title));
         $news->body = $request->body;
         $news->image = $imageName;
         $news->icon = $iconName;
-
 //        dd($request->all());
-
         $news->save();
-
 //        dd($request->input('group-a'));
-
         foreach ($request->input('group-a') as $key => $v){
 //dd($v['additional_title']);
-
             $additional_news = new AdditionalNews();
-
             $additional_news->news_id = $news->id;
             $additional_news->title = $v['additional_title'];
             $additional_news->body = $v['additional_body'];;
             $additional_news->save();
         }
-
         return redirect('/news/create')->with('message', 'Insert Successfully');
-
-
     }
 
     /**
@@ -153,13 +137,11 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-//        dd($request->all());
-
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            //'image' => 'required',
-            //'icon' => 'required',
+            'image' => 'mimes:jpeg,bmp,png,jpg',
+            'icon' => 'mimes:jpeg,bmp,png,jpg',
             'additional_title.*' => 'required',
             'additional_body.*' => 'required',
         ]);
@@ -187,15 +169,15 @@ class NewsController extends Controller
             }
 
             // Delete Old News Image
-            if (Storage::disk('public')->exists('image/'.$news->image))
+            if (Storage::disk('public')->exists('news/'.$news->image))
             {
-                Storage::disk('public')->delete('image/'.$news->image);
+                Storage::disk('public')->delete('news/'.$news->image);
             }
 
 //                resize image for category and upload
 
-            $news = Image::make($image)->resize(1600,479)->stream();
-            Storage::disk('public')->put('news/'.$imageName,$news);
+            $newsImage = Image::make($image)->resize(1600,479)->stream();
+            Storage::disk('public')->put('news/'.$imageName,$newsImage);
 
         }else {
             $imageName = $news->image;
@@ -213,29 +195,28 @@ class NewsController extends Controller
             }
 
             // Delete Old News Image
-            if (Storage::disk('public')->exists('icon/'.$news->image))
+            if (Storage::disk('public')->exists('icon/'.$news->icon))
             {
-                Storage::disk('public')->delete('icon/'.$news->image);
+                Storage::disk('public')->delete('icon/'.$news->icon);
             }
 
             //                resize image for category and upload
 
-            $icon = Image::make($icon)->resize(1600,479)->stream();
-            Storage::disk('public')->put('icon/'.$iconName,$icon);
+            $iconImage = Image::make($icon)->resize(1600,479)->stream();
+            Storage::disk('public')->put('icon/'.$iconName,$iconImage);
         }else {
-            $imageName = $news->icon;
+            $iconName = $news->icon;
         }
 
 
         $news->title = $request->title;
-		//$news->slug = Str::slug(trim($request->title));
+        $news->slug = $slug;
         $news->body = $request->body;
-        //$news->image = $imageName;
-        //$news->icon = $iconName;
-		$news->image = '1.jpg';
-        $news->icon = '2.jpg';
+        $news->image = $imageName;
+        $news->icon = $iconName;
+//		$news->image = '1.jpg';
+////        $news->icon = '2.jpg';
 
-       //dd($request->all());
 
         $news->save();
 
@@ -258,8 +239,23 @@ class NewsController extends Controller
      * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(News $news, $id)
     {
-        //
+        $news = News::find($id);
+
+        if (Storage::disk('public')->exists('news/'.$news->image))
+        {
+            Storage::disk('public')->delete('news/'.$news->image);
+        }
+
+        if (Storage::disk('public')->exists('icon/'.$news->icon))
+        {
+            Storage::disk('public')->delete('icon/'.$news->icon);
+        }
+
+        $news->delete();
+
+        return redirect('/news')->with('message', 'Delete Successfully');
+
     }
 }

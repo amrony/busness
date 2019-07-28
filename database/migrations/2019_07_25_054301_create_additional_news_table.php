@@ -16,7 +16,7 @@ class CreateAdditionalNewsTable extends Migration
         Schema::create('additional_news', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('news_id');
-            $table->foreign('news_id')->references('id')->on('news');
+            $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade');
             $table->string('title');
             $table->text('body');
             $table->timestamps();

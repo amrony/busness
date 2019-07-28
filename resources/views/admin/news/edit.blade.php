@@ -30,13 +30,13 @@
 
                         <div class="form-group">
                             <label class="control-label">Cover Photo</label>
-                            <input class="form-control col-md-6" name="image" type="file">
+                            <input class="form-control col-md-6" name="image" type="file"></br>
                             <img class="img-responsive thumbnail" src="{{ url('storage/news/'.$news->image) }}" height="100" width="150">
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Icon</label>
-                            <input class="form-control col-md-6" name="icon" type="file">
+                            <input class="form-control col-md-6" name="icon" type="file"></br>
                             <img class="img-responsive thumbnail" src="{{ url('storage/icon/'.$news->icon) }}" height="100" width="150">
                         </div>
 
@@ -58,16 +58,16 @@
                                         <textarea class="form-control" rows="8" name="additional_body[]" placeholder="" >{{ $add_news->body }}</textarea>
                                         <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
                                     </div>
-                                    <a class="btn btn-danger float-right" data-repeater-delete style="margin-bottom: 8px;">
-                                        <span class="fa fa-trash-o"></span>
-                                    </a>
+{{--                                    <a class="btn btn-danger float-right" data-repeater-delete style="margin-bottom: 8px;">--}}
+{{--                                        <span class="fa fa-trash-o"></span>--}}
+{{--                                    </a>--}}
                                 </div>
                                     @endforeach
+
+{{--                            <div class="float-right" style="margin-bottom: 10px; padding-right: 5px;">--}}
+{{--                                <input class="btn btn-info" data-repeater-create type="button" value="+"/>--}}
 {{--                            </div>--}}
-                            <div class="float-right" style="margin-bottom: 10px; padding-right: 5px;">
-                                <input class="btn btn-info" data-repeater-create type="button" value="+"/>
-                            </div>
-{{--                        </div>--}}
+
                     </div>
 
                     <div class="">

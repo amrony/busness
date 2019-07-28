@@ -25,6 +25,7 @@
                             <th>body</th>
                             <th>News Image</th>
                             <th>News Icon</th>
+                            <th>Created At</th>
                             <th width="20%">Action</th>
                         </tr>
                         </thead>
@@ -42,15 +43,18 @@
                                     <img class="img-responsive thumbnail" src="{{ url('storage/icon/'.$postNews->icon) }}" height="100" width="120">
                                 </td>
 
+                                <td>{{ $postNews->created_at }}</td>
+
                                 <td>
                                     <a href="{{ route('news.edit',$postNews->id) }}" class="btn btn-success btn-sm">
                                         <span class="fa fa-pencil-square-o fa-3x"></span>
                                     </a>
 
-                                    <a href="" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure Delete This !')">
+                                    <a href="{{ route('news-delete', $postNews->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure Delete This !')">
                                         <span class="fa fa-trash-o"></span>
                                     </a>
                                 </td>
+
                             </tr>
                         @endforeach
                         </tbody>
