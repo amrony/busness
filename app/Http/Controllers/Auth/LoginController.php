@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+//use Auth;
 
 class LoginController extends Controller
 {
@@ -21,7 +24,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * Where to redirect users after profile.
      *
      * @var string
      */
@@ -35,9 +38,29 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:profile')->except('logout');
     }
 
-//    public function admin_login(){
-//        return view('admin.login.login');
-//    }
+    public function showProfileLoginForm()
+    {
+        return view('front-end.profile.login', ['url' => 'profile']);
+    }
+
+    public function profileLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('profile')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended('/');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
+
+
+
 }

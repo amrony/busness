@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\AdditionalNews;
+use App\ArticleCategory;
+use App\ArticleSubCategory;
 use App\News;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -30,7 +32,10 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.create');
+
+        $articleCategories = ArticleCategory::all();
+        $articleSubCategories = ArticleSubCategory::all();
+        return view('admin.news.create', compact('articleCategories', 'articleSubCategories'));
     }
 
     /**
@@ -41,7 +46,10 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $this->validate($request, [
+            'article_category_id' => 'required',
+            'article_sub_category_id' => 'required',
             'title' => 'required',
             'body' => 'required',
             'image' => 'required',
@@ -86,6 +94,8 @@ class NewsController extends Controller
             $iconName = "default.png";
         }
         $news = new  News();
+        $news->article_category_id = $request->article_category_id;
+        $news->article_sub_category_id = $request->article_sub_category_id;
         $news->title = $request->title;
         $news->slug = Str::slug(trim($request->title));
         $news->body = $request->body;
@@ -105,7 +115,10 @@ class NewsController extends Controller
         return redirect('/news/create')->with('message', 'Insert Successfully');
     }
 
+
+
     /**
+     * g
      * Display the specified resource.
      *
      * @param  \App\News  $news
@@ -125,7 +138,9 @@ class NewsController extends Controller
     public function edit($id)
     {
         $news = News::find($id);
-        return view('admin.news.edit', compact('news'));
+        $articleCategories = ArticleCategory::all();
+        $articleSubCategories = ArticleSubCategory::all();
+        return view('admin.news.edit', compact('news', 'articleCategories', 'articleSubCategories'));
     }
 
     /**
@@ -138,6 +153,8 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         $this->validate($request, [
+            'article_category_id' => 'required',
+            'article_sub_category_id' => 'required',
             'title' => 'required',
             'body' => 'required',
             'image' => 'mimes:jpeg,bmp,png,jpg',
@@ -208,7 +225,8 @@ class NewsController extends Controller
             $iconName = $news->icon;
         }
 
-
+        $news->article_category_id = $request->article_category_id;
+        $news->article_sub_category_id = $request->article_sub_category_id;
         $news->title = $request->title;
         $news->slug = $slug;
         $news->body = $request->body;
@@ -220,7 +238,7 @@ class NewsController extends Controller
         $news->save();
 
 
-
+//        dd($request->add_additional_title);
         foreach($request->additional_news_id as $key => $additional_news_id){
             $additional_news = AdditionalNews::find($additional_news_id);
 			//dd($additional_news);
@@ -228,15 +246,16 @@ class NewsController extends Controller
             $additional_news->body = $request->additional_body[$key];
             $additional_news->save();
         }
-		//dd($request->all());
-		foreach($request->add_additional_title as $key => $add_addition_title){
-			$additional_news = new AdditionalNews;
-			//dd($additional_news);
-			$additional_news->news_id = $news->id;
-            $additional_news->title = $add_addition_title;
-            $additional_news->body = $request->add_additional_body[$key];
-            $additional_news->save();
-		}
+        if($request->add_additional_title != null){
+            foreach($request->add_additional_title as $key => $add_addition_title){
+                $additional_news = new AdditionalNews;
+                //dd($additional_news);
+                $additional_news->news_id = $news->id;
+                $additional_news->title = $add_addition_title;
+                $additional_news->body = $request->add_additional_body[$key];
+                $additional_news->save();
+
+            }       }
 
         return redirect('/news')->with('message', 'Update Successfully');
     }

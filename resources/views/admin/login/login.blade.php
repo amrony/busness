@@ -19,7 +19,7 @@
         <h1>Vali</h1>
     </div>
     <div class="login-box">
-        <form class="login-form" action="{{ route('login') }}" method="POST">
+        <form class="login-form" action="{{ route('profile') }}" method="POST">
             {{ csrf_field() }}
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
             <div class="form-group">
@@ -78,8 +78,8 @@
 <script src="{{ asset('/') }}admin/jsplugins/pace.min.js"></script>
 <script type="text/javascript">
     // Login Page Flipbox control
-    $('.login-content [data-toggle="flip"]').click(function() {
-        $('.login-box').toggleClass('flipped');
+    $(profilein-content [data-toggle="flip"]').click(function() {
+        $(profilein-box').toggleClass('flipped');
         return false;
     });
 </script>

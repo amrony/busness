@@ -67,9 +67,11 @@ class ArticleSubCategoryController extends Controller
      * @param  \App\ArticleSubCategory  $articleSubCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ArticleSubCategory $articleSubCategory)
+    public function edit(ArticleSubCategory $articleSubCategory, $id)
     {
-        //
+        $articleCategories = ArticleCategory::all();
+        $subCategory = ArticleSubCategory::find($id);
+        return view('admin.article-sub-category.edit-sub-article', compact('articleCategories','subCategory'));
     }
 
     /**
@@ -81,7 +83,12 @@ class ArticleSubCategoryController extends Controller
      */
     public function update(Request $request, ArticleSubCategory $articleSubCategory)
     {
-        //
+        $subCategory = ArticleSubCategory::find($request->sub_category_id);
+        $subCategory->article_category_id = $request->article_category_id;
+        $subCategory->name = $request->name;
+        $subCategory->save();
+
+        return redirect('/article/sub/category/show')->with('message', 'Update Successfully');
     }
 
     /**
@@ -90,9 +97,12 @@ class ArticleSubCategoryController extends Controller
      * @param  \App\ArticleSubCategory  $articleSubCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ArticleSubCategory $articleSubCategory)
+    public function destroy(ArticleSubCategory $articleSubCategory, $id)
     {
-        //
+        $subCategory = ArticleSubCategory::find($id);
+        $subCategory->delete();
+
+        return redirect('/article/sub/category/show')->with('message', 'Delete Successfully');
     }
 
     public function news_body(){

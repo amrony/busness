@@ -14,6 +14,29 @@
             <div class="tile-body">
                 <form action="{{ route('news.store') }}" method="POST"  enctype="multipart/form-data">
                     @csrf
+{{--                    @dd($articleCategories);--}}
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label class="control-label">Article Category</label>
+                                <select class="form-control" name="article_category_id" required="required">
+                                    <option>---Select Article Category---</option>
+                                    @foreach($articleCategories as $articleCategory)
+                                    <option value="{{ $articleCategory->id }}">{{ $articleCategory->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Article Sub Category</label>
+                                <select class="form-control" name="article_sub_category_id" required="required">
+                                    <option>---Select Article Sub Category---</option>
+                                    @foreach($articleSubCategories as $articleSubCategory)
+                                    <option value="{{ $articleSubCategory->id }}">{{ $articleSubCategory->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <label class="control-label">Title</label>
                             <input class="form-control" type="text" name="title"  placeholder="Enter Title">

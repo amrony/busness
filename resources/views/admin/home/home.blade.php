@@ -70,8 +70,8 @@
     {{--                    <ul>--}}
     {{--                        <li>Built with Bootstrap 4, SASS and PUG.js</li>--}}
     {{--                        <li>Fully responsive and modular code</li>--}}
-    {{--                        <li>Seven pages including login, user profile and print friendly invoice page</li>--}}
-    {{--                        <li>Smart integration of forgot password on login page</li>--}}
+    {{--                        <li>Seven pages including profile, user profile and print friendly invoice page</li>--}}
+    {{--                        <li>Smart integration of forgot password on profile page</li>--}}
     {{--                        <li>Chart.js integration to display responsive charts</li>--}}
     {{--                        <li>Widgets to effectively display statistics</li>--}}
     {{--                        <li>Data tables with sort, search and paginate functionality</li>--}}

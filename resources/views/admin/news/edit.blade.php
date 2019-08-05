@@ -16,6 +16,28 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="id" value="{{ $news->id }}">
+
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label class="control-label">Article Category</label>
+                            <select class="form-control" name="article_category_id" required="required">
+                                <option>---Select Article Category---</option>
+                                @foreach($articleCategories as $articleCategory)
+                                    <option value="{{ $articleCategory->id }}"{{ $articleCategory->id == $news->article_category_id ? 'selected' : '' }}>{{ $articleCategory->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Article Sub Category</label>
+                            <select class="form-control" name="article_sub_category_id" required="required">
+                                <option>---Select Article Sub Category---</option>
+                                @foreach($articleSubCategories as $articleSubCategory)
+                                    <option value="{{ $articleSubCategory->id }}" {{ $articleSubCategory->id == $news->article_sub_category_id ? 'selected' : '' }}>{{ $articleSubCategory->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                         <div class="form-group">
                             <label class="control-label">Title</label>
                             <input class="form-control" type="text" name="title" value="{{ $news->title }}">
@@ -62,8 +84,17 @@
                                     </div>
 									@endforeach
                             </div>
-                            <button type="button" class="r-btnAdd">Add +</button>
-                            <button type="button" class="r-btnRemove">Remove -</button>
+
+                            <a class="btn btn-danger float-right r-btnRemove" data-repeater-delete style="margin-bottom: 8px;">
+                                <span class="fa fa-trash-o"></span>
+                            </a>
+
+                            <div class="float-right" style="margin-bottom: 10px; padding-right: 5px;">
+                                <input class="btn btn-info r-btnAdd" type="button" value="+"/>
+                            </div>
+
+{{--                            <button type="button" class="r-btnAdd">Add +</button>--}}
+{{--                            <button type="button" class="r-btnRemove">Remove -</button>--}}
                         </div>
 						<div id="edit_add">
 						</div>
@@ -131,6 +162,7 @@
                                             '<textarea class="form-control" rows="8" name="add_additional_body[]" placeholder="" ></textarea>'+
                                             '<span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>'+
                                         '</div></div>';
+
 		
 				$('#edit_add').append(newDiv);
 			});

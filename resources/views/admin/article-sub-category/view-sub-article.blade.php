@@ -30,10 +30,10 @@
                                 <td>{{ $subCategory->article_category->name }}</td>
                                 <td>{{ $subCategory->name }}</td>
                                 <td>
-                                    <a href="" class="btn btn-success btn-sm">
+                                    <a href="{{ route('edit-article-sub-category', $subCategory->id) }}" class="btn btn-success btn-sm">
                                         <span class="fa fa-pencil-square-o fa-3x"></span>
                                     </a>
-                                    <a href="" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure Delete This !')">
+                                    <a href="{{ route('delete-article-sub-category', $subCategory->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure Delete This !')">
                                         <span class="fa fa-trash-o"></span>
                                     </a>
                                 </td>

@@ -15,12 +15,7 @@
 //    return view('welcome');
 //});
 
-//
-//Route::get('/sadmin', 'LoginController@admin_login')->name('login');
 
-
-
-//Route::get('/company/index', 'CompanyController@index')->name('new-company');
 Route::post('/company/store', 'CompanyController@store')->name('add-company');
 Route::get('/company/show', 'CompanyController@show')->name('view-company');
 Route::get('/company/edit/{id}', 'CompanyController@edit')->name('edit-company');
@@ -51,6 +46,9 @@ Route::get('/article/category/delete/{id}', 'ArticleCategoryController@destroy')
 Route::get('/article/sub/category/index', 'ArticleSubCategoryController@index')->name('article-sub-category');
 Route::post('/article/sub/category/store', 'ArticleSubCategoryController@store')->name('add-article-sub-category');
 Route::get('/article/sub/category/show', 'ArticleSubCategoryController@show')->name('view-article-sub-category');
+Route::get('/article/sub/category/edit{id}', 'ArticleSubCategoryController@edit')->name('edit-article-sub-category');
+Route::post('/article/sub/category/update', 'ArticleSubCategoryController@update')->name('update-article-sub-category');
+Route::get('/article/sub/category/delete/{id}', 'ArticleSubCategoryController@destroy')->name('delete-article-sub-category');
 
 
 Route::get('/news/body', 'ArticleSubCategoryController@news_body')->name('news-body');
@@ -72,12 +70,33 @@ Route::get('a',function (){
 });
 
 
+Route::resource('/','BusinessController');
+Route::get('profile/login','BusinessController@profileLogin')->name('profile');
+Route::get('profile/signup','BusinessController@profileSignup')->name('profile-signup');
+Route::get('/profile','BusinessController@viewProfile');
+
+
+
+Route::get('/profile/Dashboard','ProfileController@myProfile')->name('profile-dashboard');
+Route::get('/profile/edit','ProfileController@profileEdit')->name('profile-edit');
+//Route::get('/login/profile', 'Auth\LoginController@showProfileLoginForm');
+//Route::get('profile/signup', 'Auth\RegisterController@showProfileRegisterForm');
+
+Route::post('/profile/login', 'Auth\LoginController@profileLogin');
+Route::post('profile/signup', 'Auth\RegisterController@createProfile');
+
+//Route::Post('profile/logout', 'Auth\LoginController@profileLogout')->name('profile-logout');
+
+Route::view('/home', 'home')->middleware('auth');
+//Route::view('/profile', 'profile');
+
+
 
 
 
 
 Route::get('sadmin', function (){
-    return view('auth.login');
+    return view('auth.profile');
 });
 
 Auth::routes();
