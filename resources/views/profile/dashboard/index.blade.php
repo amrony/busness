@@ -23,7 +23,7 @@
                         <div class="profile_bottom col-lg-12">
                             <div class="col-lg-8">
                                 <a href="#" type="btn" class="mb-1">View Profile</a> |
-                                <a href="{{ route('profile-edit') }}" type="btn" class="mb-1">Edit Profile</a>
+                                <a href="{{ route('profile-edit', [auth('profile')->user()->id] ) }}" type="btn" class="mb-1">Edit Profile</a>
                             </div>
 
                         </div>

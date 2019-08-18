@@ -10,10 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
+
 
 
 Route::post('/company/store', 'CompanyController@store')->name('add-company');
@@ -65,11 +63,6 @@ Route::resource('news','NewsController');
 Route::get('news/delete/{id}', 'NewsController@destroy')->name('news-delete');
 
 
-Route::get('a',function (){
-    return view('admin.article-category-news.a');
-});
-
-
 Route::resource('/','BusinessController');
 Route::get('profile/login','BusinessController@profileLogin')->name('profile');
 Route::get('profile/signup','BusinessController@profileSignup')->name('profile-signup');
@@ -78,9 +71,10 @@ Route::get('/profile','BusinessController@viewProfile');
 
 
 Route::get('/profile/Dashboard','ProfileController@myProfile')->name('profile-dashboard');
-Route::get('/profile/edit','ProfileController@profileEdit')->name('profile-edit');
-//Route::get('/login/profile', 'Auth\LoginController@showProfileLoginForm');
-//Route::get('profile/signup', 'Auth\RegisterController@showProfileRegisterForm');
+Route::get('/profile/{id}/edit','ProfileController@profileCreate')->name('profile-edit');
+
+Route::post('/profile/update','ProfileController@profileStore')->name('profile-store');
+
 
 Route::post('/profile/login', 'Auth\LoginController@profileLogin');
 Route::post('profile/signup', 'Auth\RegisterController@createProfile');
@@ -88,7 +82,7 @@ Route::post('profile/signup', 'Auth\RegisterController@createProfile');
 //Route::Post('profile/logout', 'Auth\LoginController@profileLogout')->name('profile-logout');
 
 Route::view('/home', 'home')->middleware('auth');
-//Route::view('/profile', 'profile');
+
 
 
 

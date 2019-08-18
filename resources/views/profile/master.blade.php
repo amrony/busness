@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="{{ asset('back-end/css/lg-fb-comment-box.css') }}">
     <link rel="stylesheet" href="{{ asset('back-end/css/lg-transitions.css') }}">
     <link rel="stylesheet" href="{{ asset('back-end/css/style.css') }}">
-    @push('css')
+
+    @yield('css')
 </head>
 <body id="about_s">
 <div class="preloader">
@@ -45,6 +46,9 @@
     </footer>
 </div>
 <div class="snackbars" id="form-output-global"></div>
+
+
+
 <<script src="{{ asset('back-end') }}/js/jQuery.js"></script>
 <script src="{{ asset('back-end') }}/js/Cookie.js"></script>
 <script src="{{ asset('back-end') }}/js/Device.js"></script>
@@ -71,27 +75,10 @@
 <script src="{{ asset('back-end') }}/js/PageTransition.js"></script>
 <script src="{{ asset('back-end') }}/js/Parallax.js"></script>
 <script src="{{ asset('back-end') }}/js/Waypoints.js"></script>
-<script src="{{ asset('back-end') }}/js/Select2.js"></script>
-<script type='text/javascript'
-        src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
 <script src="{{ asset('back-end') }}/js/script.js"></script>
 
 
-<script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-</script>
-@push('js')
+
+
 </body>
 </html>

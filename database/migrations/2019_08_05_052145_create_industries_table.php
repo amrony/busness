@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfileInfosTable extends Migration
+class CreateIndustriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateProfileInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile_infos', function (Blueprint $table) {
+        Schema::create('industries', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateProfileInfosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile_infos');
+        Schema::dropIfExists('industries');
     }
 }

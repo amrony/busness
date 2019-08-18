@@ -41,10 +41,6 @@ class LoginController extends Controller
         $this->middleware('guest:profile')->except('logout');
     }
 
-    public function showProfileLoginForm()
-    {
-        return view('front-end.profile.login', ['url' => 'profile']);
-    }
 
     public function profileLogin(Request $request)
     {

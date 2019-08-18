@@ -42,7 +42,7 @@
 <div class="snackbars" id="form-output-global"></div>
 <script src="{{ asset('back-end') }}/js/jQuery.js"></script>
 <script src="{{ asset('back-end') }}/js/Cookie.js"></script>
-<script src="{{ asset('back-end') }}/js/Device.js"></script>
+{{--<script src="{{ asset('back-end') }}/js/Device.js"></script>--}}
 <script src="{{ asset('back-end') }}/js/ResizeEvent.js"></script>
 <script src="{{ asset('back-end') }}/js/Easing.js"></script>
 <script src="{{ asset('back-end') }}/js/TouchSwipe.js"></script>
@@ -66,9 +66,7 @@
 <script src="{{ asset('back-end') }}/js/PageTransition.js"></script>
 <script src="{{ asset('back-end') }}/js/Parallax.js"></script>
 <script src="{{ asset('back-end') }}/js/Waypoints.js"></script>
-<script src="{{ asset('back-end') }}/js/Select2.js"></script>
-<script type='text/javascript'
-        src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
+{{--<script src="{{ asset('back-end') }}/js/Select2.js"></script>--}}
 <script src="{{ asset('back-end') }}/js/script.js"></script>
 <!--LIVEDEMO_00 -->
 
