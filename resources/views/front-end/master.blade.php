@@ -42,7 +42,7 @@
 <div class="snackbars" id="form-output-global"></div>
 <script src="{{ asset('back-end') }}/js/jQuery.js"></script>
 <script src="{{ asset('back-end') }}/js/Cookie.js"></script>
-{{--<script src="{{ asset('back-end') }}/js/Device.js"></script>--}}
+<script src="{{ asset('back-end') }}/js/Device.js"></script>
 <script src="{{ asset('back-end') }}/js/ResizeEvent.js"></script>
 <script src="{{ asset('back-end') }}/js/Easing.js"></script>
 <script src="{{ asset('back-end') }}/js/TouchSwipe.js"></script>

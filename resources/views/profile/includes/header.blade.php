@@ -39,29 +39,10 @@
                     </li>
                     <li>
                     <div class="ml-3">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Account
-                        </button>
-                        <div class="dropdown-menu">
-{{--                            <a style="color: grey" class="dropdown-item" href="">{{ auth('profile')->user()->name }}</a>--}}
-{{--                            <a style="color: grey" class="dropdown-item" href="{{ route('dashboard') }}">My Profile</a>--}}
+{{--                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                            Account--}}
+{{--                        </button>--}}
 
-
-
-{{--                            <a style="color: grey" class="dropdown-item" href="{{ route('logout') }}"--}}
-{{--                               onclick="event.preventDefault();--}}
-{{--                                                     document.getElementById('logout-form').submit();">--}}
-
-{{--                                <span>Log Out</span>--}}
-{{--                            </a>--}}
-
-{{--                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-{{--                                @csrf--}}
-{{--                            </form>--}}
-
-
-                        </div>
-                    </div>
 
                     </li>
                     <li>

@@ -44,7 +44,7 @@ class ProfileController extends Controller
         $business_sizes = BusinessSize::all();
 //        BusinessSize::all();
         $countries = Country::all();
-        $profileInfo = ProfileInfo::all();
+        $profileInfo = ProfileInfo::get()->first();
         return view('profile.dashboard.create', compact(
             'countries',
             'professions',

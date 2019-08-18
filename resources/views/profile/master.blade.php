@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('back-end/css/bootstrap.css')  }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('back-end/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('back-end/css/linearicons.css') }}">
     <link rel="stylesheet" href="{{ asset('back-end/css/mercury.css') }}">
@@ -21,7 +22,7 @@
 
     @yield('css')
 </head>
-<body id="about_s">
+<body id="about_s"  class="singel-p singel-pp" style="background: #efefef;">
 <div class="preloader">
     <div class="preloader-body">
         <div class="cssload-container">
@@ -49,7 +50,7 @@
 
 
 
-<<script src="{{ asset('back-end') }}/js/jQuery.js"></script>
+<script src="{{ asset('back-end') }}/js/jQuery.js"></script>
 <script src="{{ asset('back-end') }}/js/Cookie.js"></script>
 <script src="{{ asset('back-end') }}/js/Device.js"></script>
 <script src="{{ asset('back-end') }}/js/ResizeEvent.js"></script>
@@ -78,7 +79,7 @@
 <script src="{{ asset('back-end') }}/js/script.js"></script>
 
 
-
+@yield('js')
 
 </body>
 </html>

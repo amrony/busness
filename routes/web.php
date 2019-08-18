@@ -67,6 +67,8 @@ Route::resource('/','BusinessController');
 Route::get('profile/login','BusinessController@profileLogin')->name('profile');
 Route::get('profile/signup','BusinessController@profileSignup')->name('profile-signup');
 Route::get('/profile','BusinessController@viewProfile');
+//edit
+Route::get('/news/articles','BusinessController@article_news')->name('news-articles');
 
 
 

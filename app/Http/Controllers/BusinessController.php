@@ -92,4 +92,10 @@ class BusinessController extends Controller
     public function viewProfile(){
         return view('profile.home.profile');
     }
+
+    public function article_news(){
+        return view('front-end.articles.index');
+    }
+
+
 }

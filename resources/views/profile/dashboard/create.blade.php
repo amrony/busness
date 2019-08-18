@@ -23,12 +23,9 @@
                             <h3 class="text-capitalize wow fadeInLeft" data-wow-delay=".2s">Profile <span class="text-primary">Image</span></h3>
                             <img src="{{ asset('back-end') }}/images/boss.PNG" alt="Boss" class="rounded-circle" height="160" width="150">
                         </div>
-                        <br>
                         <div class="profile_bottom col-lg-12">
                             <div class="list-group col-lg-8">
-                                <a href="#" type="btn" class="list-group-item list-group-item-action mb-1">Update Profile</a>
-                                <a href="#" type="btn" class="list-group-item list-group-item-action mb-1">Edit</a>
-                                <a href="#" type="btn" class="list-group-item list-group-item-action mb-1">Delete</a>
+{{--                                <a href="#" type="btn" class="list-group-item list-group-item-action mb-1">Update Profile</a>--}}
                             </div>
 
                         </div>
@@ -95,7 +92,7 @@
 
                             <div class="form-group">
                                 <label for="jobTitle">Job Title</label>
-                                <input class="form-control" name="job_title" placeholder="Job Title">
+                                <input class="form-control" name="job_title"  placeholder="Job Title">
                             </div>
 
                             <label for="jobTitle">Industry</label>
