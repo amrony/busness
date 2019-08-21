@@ -32,7 +32,7 @@
         <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{ route('article-category') }}"><i class="icon fa fa-circle-o"></i>Category</a></li>
             <li><a class="treeview-item" href="{{ route('article-sub-category') }}"><i class="icon fa fa-circle-o"></i>Sub Category</a></li>
-            <li><a class="treeview-item" href="{{ route('article-category.create') }}"><i class="icon fa fa-circle-o"></i>News</a></li>
+{{--            <li><a class="treeview-item" href="{{ route('article-category.create') }}"><i class="icon fa fa-circle-o"></i>News</a></li>--}}
         </ul>
     </li>
 
@@ -43,12 +43,32 @@
         </ul>
     </li>
 
-{{--    <li class="treeview">--}}
-{{--        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">News Body</span><i class="treeview-indicator fa fa-angle-right"></i></a>--}}
-{{--        <ul class="treeview-menu">--}}
-{{--            <li><a class="treeview-item" href="{{ route('news-body') }}"><i class="icon fa fa-circle-o"></i>Add Body</a></li>--}}
-{{--        </ul>--}}
-{{--    </li>--}}
+    <li class="treeview">
+        <a class="app-menu__item" href="#" data-toggle="treeview">
+            <i class="app-menu__icon fa fa-edit"></i>
+            <span class="app-menu__label">Business Profile</span>
+            <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a class="treeview-item" href="{{ route('business-profile.create') }}">
+                    <i class="icon fa fa-circle-o"></i>
+                    Add Business Profile
+                </a>
+            </li>
+
+            <li>
+                <a class="treeview-item" href="{{ route('profile-article.create') }}">
+                    <i class="icon fa fa-circle-o"></i>
+                    Add Profile Article
+                </a>
+            </li>
+        </ul>
+    </li>
+
+
+
+
 
     <li class="treeview">
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">User</span><i class="treeview-indicator fa fa-angle-right"></i></a>

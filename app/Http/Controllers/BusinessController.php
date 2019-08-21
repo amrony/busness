@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ArticleCategory;
+use App\ArticleSubCategory;
+use App\News;
 use Illuminate\Http\Request;
 use App\Page;
 
@@ -93,8 +96,31 @@ class BusinessController extends Controller
         return view('profile.home.profile');
     }
 
-    public function article_news(){
-        return view('front-end.articles.index');
+    public function article_news(Request $request){
+        $articleCategories = ArticleCategory::get();
+        if($request->has('cat_id')){
+            $news = News::where('article_category_id', $request->cat_id)
+                ->get();
+            $latestNews = News::where('article_category_id', $request->cat_id)
+                ->latest()
+                ->take(25)
+                ->get();
+        }
+        else if($request->has('id') && $request->has('sub_cat_id')){
+            $news = News::where('article_category_id', $request->id)
+                ->where('article_sub_category_id', $request->sub_cat_id)
+                ->get();
+            $latestNews = News::where('article_category_id', $request->id)
+                ->where('article_sub_category_id', $request->sub_cat_id)
+                ->latest()
+                ->take(25)
+                ->get();
+        }else{
+            $news = News::get();
+            $latestNews = News::latest()->take(25)->get();
+        }
+
+        return view('front-end.articles.index', compact('articleCategories','news','latestNews'));
     }
 
 

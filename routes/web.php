@@ -62,20 +62,26 @@ Route::get('/article/news/category/delete/{id}', 'ArticleCategoryNewsController@
 Route::resource('news','NewsController');
 Route::get('news/delete/{id}', 'NewsController@destroy')->name('news-delete');
 
+Route::resource('business-profile','BusinessProfileController');
+Route::get('business-profile/destroy/{id}','BusinessProfileController@destroy')->name('business-profile.delete');
+
+Route::resource('profile-article','BusinessProfileArticleController');
+
 
 Route::resource('/','BusinessController');
 Route::get('profile/login','BusinessController@profileLogin')->name('profile');
 Route::get('profile/signup','BusinessController@profileSignup')->name('profile-signup');
 Route::get('/profile','BusinessController@viewProfile');
 //edit
-Route::get('/news/articles','BusinessController@article_news')->name('news-articles');
+Route::get('/articles/news', 'BusinessController@article_news')->name('news-articles');
 
 
 
 Route::get('/profile/Dashboard','ProfileController@myProfile')->name('profile-dashboard');
-Route::get('/profile/{id}/edit','ProfileController@profileCreate')->name('profile-edit');
+Route::get('/profile/edit','ProfileController@edit')->name('profile-edit');
+Route::get('/profile/edit','ProfileController@edit')->name('profile-edit');
 
-Route::post('/profile/update','ProfileController@profileStore')->name('profile-store');
+Route::post('/profile/update','ProfileController@update')->name('profile.update');
 
 
 Route::post('/profile/login', 'Auth\LoginController@profileLogin');

@@ -3,8 +3,6 @@
 @section('body')
     <div class="col-md-12">
         <div class="block-header" style="margin-bottom: 8px">
-            {{--        <a href="" class="btn btn-danger m-t-15 waves-effect">Back</a>--}}
-            {{--            <a class="btn btn-primary waves-effect" href="{{ route('view-article-news') }}">--}}
             <a href="{{ route('news.index') }}" class="btn btn-primary m-t-15 waves-effect">View News</a>
             </a>
             <h2 class="text-center" style="color: green">{{ Session::get('message') }}</h2>

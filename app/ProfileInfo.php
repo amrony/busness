@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProfileInfo extends Model
 {
+    protected $guarded = [
+        'id'
+    ];
     public function profession(){
         return $this->belongsTo(Profession::class);
     }
