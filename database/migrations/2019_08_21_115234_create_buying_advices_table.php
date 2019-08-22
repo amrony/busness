@@ -15,6 +15,12 @@ class CreateBuyingAdvicesTable extends Migration
     {
         Schema::create('buying_advices', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('article_category_id');
+            $table->foreign('article_category_id')->references('id')->on('article_categories')->onDelete('cascade');
+            $table->unsignedBigInteger('article_sub_category_id');
+            $table->foreign('article_sub_category_id')->references('id')->on('article_sub_categories')->onDelete('cascade');
+            $table->string('title');
+            $table->text('body');
             $table->timestamps();
         });
     }

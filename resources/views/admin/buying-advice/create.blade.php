@@ -3,35 +3,37 @@
 @section('body')
     <div class="col-md-12">
         <div class="block-header" style="margin-bottom: 8px">
-            <a href="" class="btn btn-primary m-t-15 waves-effect">View News</a>
+            <a href="{{ route('buying-advice.index') }}" class="btn btn-primary m-t-15 waves-effect">View All Buying
+                Advice</a>
             </a>
             <h2 class="text-center" style="color: green">{{ Session::get('message') }}</h2>
         </div>
         <div class="tile">
             <h3 class="tile-title">Add Buying Advice</h3>
             <div class="tile-body">
-                <form action="}" method="POST"  enctype="multipart/form-data">
+                <form action="{{ route('buying-advice.store') }}" method="POST">
                     @csrf
-
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label class="control-label">Business Category</label>
                             <select class="form-control" name="article_category_id" required="required">
-                                <option>---Select Business Category---</option>
+                                <option value="0">---Select Business Category---</option>
                                 @foreach($articleCategories as $articleCategory)
                                     <option value="{{ $articleCategory->id }}">{{ $articleCategory->name }}</option>
                                     @endforeach
                             </select>
+                            <span class="text-danger">{{ $errors->has('article_category_id') ? $errors->first('article_category_id') : '' }}</span>
                         </div>
                         <div class="col-md-6">
                             <label class="control-label">Business Sub Category</label>
                             <select class="form-control" name="article_sub_category_id" required="required">
-                                <option>---Select Business Sub Category---</option>
+                                <option value="0">---Select Business Sub Category---</option>
                                 @foreach($articleSubCategories as $articleSubCategory)
                                     <option value="{{ $articleSubCategory->id }}">{{ $articleSubCategory->name
                                     }}</option>
                                     @endforeach
                             </select>
+                            <span class="text-danger">{{ $errors->has('article_sub_category_id') ? $errors->first('article_sub_category_id') : '' }}</span>
                         </div>
                     </div>
 
@@ -60,14 +62,18 @@
                                 <div data-repeater-item>
                                     <div class="form-group">
                                         <label class="control-label">Title</label>
-                                        <input class="form-control" type="text" name="additional_title"  placeholder="Enter Title">
-                                        <span class="text-danger">{{ $errors->has('title') ? $errors->first('title') : '' }}</span>
+                                        <input class="form-control" type="text" name="additional_title"
+                                               placeholder="Enter Title">
+                                        <span class="text-danger">{{ $errors->has('additional_title') ?
+                                        $errors->first('additional_title') : '' }}</span>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="control-label">Body</label>
-                                        <textarea class="form-control" rows="8" name="additional_body" placeholder="" ></textarea>
-                                        <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
+                                        <textarea class="form-control" rows="8" name="additional_body"
+                                                  placeholder="" ></textarea>
+                                        <span class="text-danger">{{ $errors->has('additional_body') ?
+                                        $errors->first('additional_body') : '' }}</span>
                                     </div>
                                     <a class="btn btn-danger float-right" data-repeater-delete style="margin-bottom: 8px;">
                                         <span class="fa fa-trash-o"></span>
@@ -123,7 +129,6 @@
 
                 }
             });
-
         });
     </script>
 

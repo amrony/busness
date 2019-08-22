@@ -255,7 +255,8 @@ class NewsController extends Controller
                 $additional_news->body = $request->add_additional_body[$key];
                 $additional_news->save();
 
-            }       }
+            }
+        }
 
         return redirect('/news')->with('message', 'Update Successfully');
     }
