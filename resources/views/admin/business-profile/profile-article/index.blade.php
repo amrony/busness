@@ -4,7 +4,8 @@
 {{--    @dd('$businessProfiles');--}}
     <div class="col-md-12">
         <div class="block-header" style="margin-bottom: 8px">
-            <a href="{{ route('business-profile.create') }}" class="btn btn-danger m-t-15 waves-effect">back</a>
+            <a href="{{ route('profile-article.create') }}" class="btn btn-danger m-t-15 waves-effect">Add Profile
+                Article</a>
             </a>
             <h2 class="text-center" style="color: green">{{ Session::get('message') }}</h2>
         </div>
@@ -17,33 +18,29 @@
                     <tr>
                         <th>SL</th>
                         <th>Company Name</th>
-                        <th>Email</th>
-                        <th>Link</th>
+                        <th>Title</th>
                         <th>Short Description</th>
                         <th>Long Description</th>
                         <th width="15%">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($businessProfiles as $key=>$businessProfile)
+                    @foreach($profileArticles as $key=>$profileArticle)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $businessProfile->name }}</td>
-                            <td>{{ $businessProfile->email }}</td>
-                            <td>{{ $businessProfile->link }}</td>
-                            <td>{{ str_limit($businessProfile->short_description,10) }}</td>
-                            <td>{{ str_limit($businessProfile->long_description,20) }}</td>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $profileArticle->business_profile->name }}</td>
+                            <td>{{ $profileArticle->title }}</td>
+                            <td>{{ str_limit($profileArticle->short_description, 10) }}</td>
+                            <td>{{ str_limit($profileArticle->long_description, 10) }}</td>
                             <td>
-                                <a href="{{ route('business-profile.edit',$businessProfile->id) }}" class="btn
-                                btn-success btn-sm">
+                                <a href="{{ route('profile-article.edit',$profileArticle->id) }}" class="btn btn-success
+                                 btn-sm">
                                     <span class="fa fa-pencil-square-o fa-3x"></span>
                                 </a>
 
-                                <a href="{{ route('business-profile.delete',$businessProfile->id) }}" class="btn
+                                <a href="{{ route('profile-article.delete', $profileArticle->id) }}" class="btn
                                 btn-danger btn-sm"
-                                   onclick="return confirm('Are You ' +
-                                 'Sure ' +
-                                 'Delete This !')">
+                                   onclick="return confirm('Are You Sure Delete This !')">
                                     <span class="fa fa-trash-o"></span>
                                 </a>
                             </td>

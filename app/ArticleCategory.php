@@ -13,4 +13,7 @@ class ArticleCategory extends Model
     public function news(){
         return $this->hasMany('App\News');
     }
+    public function buying_advices(){
+        return $this->hasMany(BuyingAdvice::class);
+    }
 }

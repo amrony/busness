@@ -15,6 +15,12 @@ class CreateBusinessProfileArticlesTable extends Migration
     {
         Schema::create('business_profile_articles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('business_profile_id');
+            $table->foreign('business_profile_id')->references('id')->on('business_profiles');
+            $table->string('title');
+            $table->text('short_description');
+            $table->text('long_description');
+            $table->text('image');
             $table->timestamps();
         });
     }

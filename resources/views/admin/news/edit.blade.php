@@ -92,9 +92,6 @@
                             <div class="float-right" style="margin-bottom: 10px; padding-right: 5px;">
                                 <input class="btn btn-info r-btnAdd" type="button" value="+"/>
                             </div>
-
-{{--                            <button type="button" class="r-btnAdd">Add +</button>--}}
-{{--                            <button type="button" class="r-btnRemove">Remove -</button>--}}
                         </div>
 						<div id="edit_add">
 						</div>

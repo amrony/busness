@@ -66,6 +66,9 @@ Route::resource('business-profile','BusinessProfileController');
 Route::get('business-profile/destroy/{id}','BusinessProfileController@destroy')->name('business-profile.delete');
 
 Route::resource('profile-article','BusinessProfileArticleController');
+Route::get('profile-article/destroy/{id}','BusinessProfileArticleController@destroy')->name('profile-article.delete');
+
+Route::resource('buying-advice','BuyingAdviceController');
 
 
 Route::resource('/','BusinessController');

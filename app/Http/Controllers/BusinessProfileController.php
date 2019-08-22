@@ -82,6 +82,7 @@ class BusinessProfileController extends Controller
      */
     public function update(Request $request, BusinessProfile $businessProfile)
     {
+        dd($businessProfile);
         $attributes = $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -89,14 +90,8 @@ class BusinessProfileController extends Controller
             'short_description' => 'required',
             'long_description' => 'required'
         ]);
-        $businessProfile->update($attributes);
 
-//        $businessProfile->name = $request->name;
-//        $businessProfile->email = $request->email;
-//        $businessProfile->link = $request->link;
-//        $businessProfile->short_description = $request->short_description;
-//        $businessProfile->long_description = $request->long_description;
-//        $businessProfile->save();
+        $businessProfile->update($attributes);
 
         return redirect('/business-profile')->with('message','Update Successfully');
     }
