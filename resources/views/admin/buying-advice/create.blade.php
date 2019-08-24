@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
 @section('body')
     <div class="col-md-12">
         <div class="block-header" style="margin-bottom: 8px">
@@ -37,6 +37,17 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="control-label">Suggest Product & Service</label>
+                        <select class="form-control select2" name="business_profile_article_id" multiple="multiple">
+                            <option value="0">---Select Business Category---</option>
+                            <option>One</option>
+                            <option>Two</option>
+                            <option>Three</option>
+                        </select>
+                        <span class="text-danger">{{ $errors->has('article_category_id') ? $errors->first('article_category_id') : '' }}</span>
+                    </div>
+
 
                     <div class="form-group">
                         <label class="control-label">Title</label>
@@ -49,11 +60,6 @@
                         <textarea class="form-control" rows="8" name="body" placeholder="" ></textarea>
                         <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
                     </div>
-
-{{--                    <div class="form-group">--}}
-{{--                        <label class="control-label">Cover Photo</label>--}}
-{{--                        <input class="form-control col-md-6" name="image" type="file">--}}
-{{--                    </div>--}}
 
                     <div class="additional_news" style="padding-top: 20px;">
                         <h3 class="tile-title">Additional Buying Advice</h3>
@@ -105,6 +111,8 @@
 
     <script src="{{ asset('js/repeater/jquery.repeater.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+
     <script>
         $(document).ready(function () {
             'use strict';
@@ -129,6 +137,11 @@
 
                 }
             });
+        });
+
+
+        $(document).ready(function() {
+            $('.select2').select2();
         });
     </script>
 

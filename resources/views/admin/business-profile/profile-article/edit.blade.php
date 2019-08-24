@@ -4,13 +4,13 @@
     <div class="col-md-12">
         <div class="block-header" style="margin-bottom: 8px">
             <a href="{{ route('profile-article.index') }}" class="btn btn-primary m-t-15 waves-effect">All
-                Business Profile Articles</a>
+                Product & Service</a>
             </a>
             <h2 class="text-center" style="color: green">{{ Session::get('message') }}</h2>
         </div>
 {{--        @dd($businessProfiles);--}}
         <div class="tile">
-            <h3 class="tile-title">Update Business Profile</h3>
+            <h3 class="tile-title">Update Product & Service</h3>
             <div class="tile-body">
                 <form action="{{ route('profile-article.update',$profileArticle->id) }}" method="POST"
                       enctype="multipart/form-data">
@@ -30,7 +30,7 @@
 
 {{--                    @dd($profileArticle)--}}
                     <div class="form-group">
-                        <label class="control-label">Title</label>
+                        <label class="control-label">Product/Service</label>
                         <input class="form-control" type="text" value="{{ $profileArticle->title }}" name="title">
                         <input class="form-control" type="hidden" value="{{ $profileArticle->id }}" name="article_id">
                         <span class="text-danger">{{ $errors->has('title') ? $errors->first('title') : '' }}</span>

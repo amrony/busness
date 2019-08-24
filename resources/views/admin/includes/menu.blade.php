@@ -62,7 +62,8 @@
             <li>
                 <a class="treeview-item" href="{{ route('profile-article.create') }}">
                     <i class="icon fa fa-circle-o"></i>
-                    Add Profile Article
+{{--                    Add Profile Article--}}
+                    Add Product & Service
                 </a>
             </li>
         </ul>

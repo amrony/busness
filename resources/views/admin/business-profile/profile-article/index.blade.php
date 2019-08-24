@@ -4,21 +4,20 @@
 {{--    @dd('$businessProfiles');--}}
     <div class="col-md-12">
         <div class="block-header" style="margin-bottom: 8px">
-            <a href="{{ route('profile-article.create') }}" class="btn btn-danger m-t-15 waves-effect">Add Profile
-                Article</a>
+            <a href="{{ route('profile-article.create') }}" class="btn btn-danger m-t-15 waves-effect">Add Product & Service</a>
             </a>
             <h2 class="text-center" style="color: green">{{ Session::get('message') }}</h2>
         </div>
 
         <div class="tile">
-            <h3 class="tile-title">View Business Profile</h3>
+            <h3 class="tile-title">View Product & Service</h3>
             <div class="row">
                 <table class="table table-hover table-bordered" id="sampleTable">
                     <thead>
                     <tr>
                         <th>SL</th>
                         <th>Company Name</th>
-                        <th>Title</th>
+                        <th>Product/Service</th>
                         <th>Short Description</th>
                         <th>Long Description</th>
                         <th width="15%">Action</th>
