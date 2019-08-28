@@ -1514,15 +1514,15 @@
         if (that.options.liveSearch) {
           $items.each(function (i) {
             if (!$(this).hasClass('disabled')) {
-              $(this).data('index', i);
+              $(this).data('index.blade', i);
             }
           });
           index = $items.index($items.filter('.active'));
-          first = $items.first().data('index');
-          last = $items.last().data('index');
-          next = $items.eq(index).nextAll().eq(0).data('index');
-          prev = $items.eq(index).prevAll().eq(0).data('index');
-          nextPrev = $items.eq(next).prevAll().eq(0).data('index');
+          first = $items.first().data('index.blade');
+          last = $items.last().data('index.blade');
+          next = $items.eq(index).nextAll().eq(0).data('index.blade');
+          prev = $items.eq(index).prevAll().eq(0).data('index.blade');
+          nextPrev = $items.eq(next).prevAll().eq(0).data('index.blade');
         }
 
         prevIndex = $this.data('prevIndex');

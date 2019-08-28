@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\ArticleCategory;
 use App\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -27,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        view()->composer('*',function ($view){
+            $articleCategories = ArticleCategory::get();
+            $view->with('articleCategories', $articleCategories);
+        });
 
     }
 

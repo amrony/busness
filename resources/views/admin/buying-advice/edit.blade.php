@@ -1,4 +1,7 @@
 @extends('admin.master')
+@section('css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+    @endsection
 
 @section('body')
     <div class="col-md-12">
@@ -15,7 +18,7 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="id" value="{{ $buyingAdvice->id }}">
-
+{{--    @dd($buyingAdvice->buying_advice_business_profiles)--}}
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label class="control-label">Business Category</label>
@@ -45,6 +48,27 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="control-label">Suggest Product & Service</label>
+                        <select class="form-control select2" name="business_profile_article_id[]" multiple="multiple">
+                            <option value="0">---Select Business Category---</option>
+                            @foreach($businessProfileArticles as $businessProfileArticle)
+                                <option value="{{ $businessProfileArticle->id }}"
+                                @foreach($buyingAdvice->buying_advice_business_profiles as $article)
+                                    @if($article->id == $businessProfileArticle->id)
+                                        selected
+                                        @endif
+                                @endforeach
+                                >
+                                    {{ $businessProfileArticle->title}}
+                                </option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger">{{ $errors->has('business_profile_article_id') ? $errors->first('business_profile_article_id') : '' }}</span>
+                    </div>
+
+
+
 
                     <div class="form-group">
                         <label class="control-label">Title</label>
@@ -57,6 +81,13 @@
                         <textarea class="form-control" rows="8" name="body" placeholder="" >{{ $buyingAdvice->body
                         }}</textarea>
                         <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Image</label>
+                        <input class="form-control col-lg-6" name="image" type="file"><br>
+                        <img src="{{ url('storage/buying_advice/', $buyingAdvice->image) }}" width="120" height="120">
+                        <span class="text-danger">{{ $errors->has('image') ? $errors->first('image') : '' }}</span>
                     </div>
 
 
@@ -109,8 +140,14 @@
 
 
 @section('js_attach')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
+
+
         $(document).ready(function(){
 
 

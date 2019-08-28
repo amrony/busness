@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdditionalBuyingAdvicesTable extends Migration
+class CreateAdditionalBuyingAdviceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -30,6 +30,6 @@ class CreateAdditionalBuyingAdvicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('additional_buying_advices');
+        Schema::dropIfExists('additional_buying_advice');
     }
 }

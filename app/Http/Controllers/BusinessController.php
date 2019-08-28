@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\ArticleCategory;
 use App\ArticleSubCategory;
+use App\BuyingAdvice;
+use App\BuyingAdviceBusinessProfileArticle;
 use App\News;
 use Illuminate\Http\Request;
 use App\Page;
@@ -97,7 +99,7 @@ class BusinessController extends Controller
     }
 
     public function article_news(Request $request){
-        $articleCategories = ArticleCategory::get();
+//        $articleCategories = ArticleCategory::get();
         if($request->has('cat_id')){
             $news = News::where('article_category_id', $request->cat_id)
                 ->get();
@@ -120,7 +122,40 @@ class BusinessController extends Controller
             $latestNews = News::latest()->take(25)->get();
         }
 
-        return view('front-end.articles.index', compact('articleCategories','news','latestNews'));
+//        if ($request->has('id'))
+
+        if($request->has('cat_id')){
+            $buyingAdvices = BuyingAdvice::where('article_category_id', $request->cat_id)
+                ->get();
+        }
+
+        else if($request->has('id') && $request->has('sub_cat_id')){
+            $buyingAdvices = BuyingAdvice::where('article_category_id', $request->id)
+                ->where('article_sub_category_id', $request->sub_cat_id)
+                ->get();
+        }else{
+            $buyingAdvices = News::get();
+//            $latestNews = News::latest()->take(25)->get();
+        }
+
+//        $buyingAdvices = BuyingAdvice::get();
+//        dd($buyingAdvices);
+
+
+
+
+        return view('front-end.menubar.articles.index', compact(
+            'news',
+            'latestNews',
+            'buyingAdvices'
+        ));
+    }
+
+    public function viewBuying($id){
+        $buyingGuide = BuyingAdvice::find($id);
+        $profileArticles = BuyingAdviceBusinessProfileArticle::where('buying_advice_id', $id)->get();
+//        dd($buyingArticles);
+        return view('front-end.menubar.buying-guides.index', compact('buyingGuide','profileArticles'));
     }
 
 

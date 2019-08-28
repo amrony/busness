@@ -19,8 +19,11 @@ class CreateBuyingAdvicesTable extends Migration
             $table->foreign('article_category_id')->references('id')->on('article_categories')->onDelete('cascade');
             $table->unsignedBigInteger('article_sub_category_id');
             $table->foreign('article_sub_category_id')->references('id')->on('article_sub_categories')->onDelete('cascade');
+            $table->unsignedBigInteger('business_profile_article_id');
+            $table->foreign('business_profile_article_id')->references('id')->on('business_profile_articles')->onDelete('cascade');
             $table->string('title');
             $table->text('body');
+            $table->text('image');
             $table->timestamps();
         });
     }

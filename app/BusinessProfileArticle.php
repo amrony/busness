@@ -10,4 +10,10 @@ class BusinessProfileArticle extends Model
     public function business_profile(){
         return $this->belongsTo(BusinessProfile::class);
     }
+    public function buying_advices(){
+        return $this->hasMany(BuyingAdvice::class);
+    }
+    public function buying_advice_business_profiles(){
+        return $this->hasMany(BuyingAdviceBusinessProfileArticle::class);
+    }
 }

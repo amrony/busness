@@ -11,7 +11,7 @@
         <div class="tile">
             <h3 class="tile-title">Add Buying Advice</h3>
             <div class="tile-body">
-                <form action="{{ route('buying-advice.store') }}" method="POST">
+                <form action="{{ route('buying-advice.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <div class="col-md-6">
@@ -36,16 +36,17 @@
                             <span class="text-danger">{{ $errors->has('article_sub_category_id') ? $errors->first('article_sub_category_id') : '' }}</span>
                         </div>
                     </div>
-
+{{--                    @dd($businessProfileArticles);--}}
                     <div class="form-group">
                         <label class="control-label">Suggest Product & Service</label>
-                        <select class="form-control select2" name="business_profile_article_id" multiple="multiple">
+                        <select class="form-control select2" name="business_profile_article_id[]" multiple="multiple">
                             <option value="0">---Select Business Category---</option>
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
+                            @foreach($businessProfileArticles as $businessProfileArticle)
+                            <option value="{{ $businessProfileArticle->id }}">{{ $businessProfileArticle->title
+                            }}</option>
+                                @endforeach
                         </select>
-                        <span class="text-danger">{{ $errors->has('article_category_id') ? $errors->first('article_category_id') : '' }}</span>
+                        <span class="text-danger">{{ $errors->has('business_profile_article_id') ? $errors->first('business_profile_article_id') : '' }}</span>
                     </div>
 
 
@@ -59,6 +60,12 @@
                         <label class="control-label">Body</label>
                         <textarea class="form-control" rows="8" name="body" placeholder="" ></textarea>
                         <span class="text-danger">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Image</label>
+                        <input class="form-control" name="image" type="file">
+                        <span class="text-danger">{{ $errors->has('image') ? $errors->first('image') : '' }}</span>
                     </div>
 
                     <div class="additional_news" style="padding-top: 20px;">

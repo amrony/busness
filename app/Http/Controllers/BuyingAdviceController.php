@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\AdditionalBuyingAdvice;
 use App\ArticleCategory;
 use App\ArticleSubCategory;
+use App\BusinessProfileArticle;
 use App\BuyingAdvice;
+use App\BuyingAdviceBusinessProfileArticle;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class BuyingAdviceController extends Controller
 {
@@ -29,11 +34,12 @@ class BuyingAdviceController extends Controller
      */
     public function create()
     {
+        $businessProfileArticles = BusinessProfileArticle::all();
+//        dd($businessProfileArticle);
         $articleCategories = ArticleCategory::all();
         $articleSubCategories = ArticleSubCategory::all();
-//        dd($articleSubCategories);
         return view('admin.buying-advice.create',
-            compact('articleCategories','articleSubCategories'));
+            compact('articleCategories','articleSubCategories','businessProfileArticles'));
     }
 
     /**
@@ -45,18 +51,67 @@ class BuyingAdviceController extends Controller
     public function store(Request $request)
     {
 //        dd($request->all());
-        $attributes = $request->validate([
+//        $attributes = $request->validate([
+//            'article_category_id' => 'required|not_in:0',
+//            'article_sub_category_id' => 'required|not_in:0',
+//            'business_profile_article_id' => 'required|not_in:0',
+//            'title' => 'required',
+//            'body' => 'required',
+//            'additional_title.*' => '',
+//            'additional_body.*>' => ''
+//        ]);
+        $this->validate($request, [
             'article_category_id' => 'required|not_in:0',
             'article_sub_category_id' => 'required|not_in:0',
+            'business_profile_article_id' => 'required|not_in:0',
             'title' => 'required',
             'body' => 'required',
+            'image' => 'required',
             'additional_title.*' => '',
             'additional_body.*>' => ''
         ]);
-//        dd($request->all());
-        $buyingAdvice = BuyingAdvice::create($attributes);
+
+
+        $image = $request->file('image');
+        if (isset($image))
+        {
+//          make unique name for image
+//            $currentDate = Carbon::now()->toDateString();
+            $imageName = 'buying_advice-'.uniqid().'.'.$image->getClientOriginalExtension();
+//                check category directory is exists
+            if (!Storage::disk('public')->exists('buying_advice'))
+            {
+                Storage::disk('public')->makeDirectory('buying_advice');
+            }
+
+//                resize image for category and upload
+            $buyingImage = Image::make($image)->resize(600,600)->stream();
+            Storage::disk('public')->put('buying_advice/'.$imageName,$buyingImage);
+        }else{
+            $imageName = "default.png";
+        }
+
+//        $attributes['image']  = $imageName;
+
+        $buyingAdvice = new BuyingAdvice();
+        $buyingAdvice->article_category_id = $request->article_category_id;
+        $buyingAdvice->article_sub_category_id = $request->article_sub_category_id;
+        $buyingAdvice->title = $request->title;
+        $buyingAdvice->body = $request->body;
+        $buyingAdvice->image = $imageName;
+//        $buyingAdvice->business_profile_article_id = 1;
+        $buyingAdvice->save();
+//        dd($request->business_profile_article_id);
+        $buyingAdvice->buying_advice_business_profiles()->attach($request->business_profile_article_id);
+//        foreach ($request->business_profile_article_id as $key => $value){
+//            $businessProfile = new BuyingAdviceBusinessProfileArticle;
+//            $businessProfile->buying_advice_id = $buyingAdvice->id;
+//            $businessProfile->business_profile_article_id = $value;
+//            $businessProfile->save();
+//         }
 //        dd($request->input('group-a'));
         foreach ($request->input('group-a') as $key => $v ){
+//            dd($request->input('group-a'));
             $additionalBuyingAdvice = new AdditionalBuyingAdvice();
             $additionalBuyingAdvice->buying_advice_id = $buyingAdvice->id;
             $additionalBuyingAdvice->additional_title = $v['additional_title'];
@@ -85,15 +140,19 @@ class BuyingAdviceController extends Controller
      */
     public function edit($id)
     {
+        $businessProfileArticles = BusinessProfileArticle::all();
         $buyingAdvice = BuyingAdvice::find($id);
         $articleCategories = ArticleCategory::all();
         $articleSubCategories = ArticleSubCategory::all();
-//        dd($buyingAdvice);
+
+        $titles = $buyingAdvice->buying_advice_business_profiles;
+
         return view('admin.buying-advice.edit', compact
         (
             'buyingAdvice',
             'articleCategories',
-            'articleSubCategories'
+            'articleSubCategories',
+            'businessProfileArticles'
 
         ));
     }
@@ -107,18 +166,62 @@ class BuyingAdviceController extends Controller
      */
     public function update(Request $request, BuyingAdvice $buyingAdvice)
     {
+
         $attributes = $request->validate([
             'article_category_id' => 'required|not_in:0',
             'article_sub_category_id' => 'required|not_in:0',
+            'business_profile_article_id' => 'required|not_in:0',
             'title' => 'required',
             'body' => 'required',
+            'image' => '',
             'additional_title' => '',
             'additional_body' => ''
         ]);
-//        dd($request->all());
-//        $buyingAdvice = BuyingAdvice::create($attributes);
+
+
         $buyingAdvice = BuyingAdvice::find($request->id);
-        $buyingAdvice->update($attributes);
+
+        $image = $request->file('image');
+        if (isset($image))
+        {
+//          make unique name for image
+//            $currentDate = Carbon::now()->toDateString();
+            $imageName = 'buying_advice-'.uniqid().'.'.$image->getClientOriginalExtension();
+//                check category directory is exists
+            if (!Storage::disk('public')->exists('buying_advice'))
+            {
+                Storage::disk('public')->makeDirectory('buying_advice');
+            }
+            // Delete Old News Image
+            if (Storage::disk('public')->exists('buying_advice/'.$buyingAdvice->image))
+            {
+                Storage::disk('public')->delete('buying_advice/'.$buyingAdvice->image);
+            }
+//                resize image for category and upload
+            $buyingImage = Image::make($image)->resize(600,600)->stream();
+            Storage::disk('public')->put('buying_advice/'.$imageName,$buyingImage);
+        }else{
+            $imageName = $buyingAdvice->image;
+        }
+//        $buyingAdvice = new BuyingAdvice();
+        $buyingAdvice->article_category_id = $request->article_category_id;
+        $buyingAdvice->article_sub_category_id = $request->article_sub_category_id;
+        $buyingAdvice->title = $request->title;
+        $buyingAdvice->body = $request->body;
+        $buyingAdvice->image = $imageName;
+        $buyingAdvice->business_profile_article_id = 1;
+        $buyingAdvice->save();
+
+
+        $buyingAdvice->buying_advice_business_profiles()->sync($request->business_profile_article_id);
+
+//        dd($request->business_profile_article_id);
+//        foreach ($request->business_profile_article_id as $key => $value){
+//            $businessProfile = new BuyingAdviceBusinessProfileArticle;
+//            $businessProfile->buying_advice_id = $buyingAdvice->id;
+//            $businessProfile->business_profile_article_id = $value;
+//            $businessProfile->save();
+//        }
 
 
         foreach ($request->add_buyingAdvice_id as $key => $add_buyingAdvice_id){
