@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec4391c3-f316-40a7-a129-2cccc6461156" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BusinessController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BusinessController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_06_061659_create_profile_infos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_06_061659_create_profile_infos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/includes/menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front-end/menubar/buying-guides/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/menubar/buying-guides/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front-end/profile/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/profile/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front-end/profile/signup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/profile/signup.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_29_044259_create_testimonials_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_29_044259_create_testimonials_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,11 +41,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TestimonialController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-163">
-              <caret line="103" column="10" selection-start-line="103" selection-start-column="10" selection-end-line="139" selection-end-column="36" />
+            <state relative-caret-position="149">
+              <caret line="44" column="24" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_29_044259_create_testimonials_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_28_114258_create_our_features_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -133,7 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_24_054236_add_product_service_to_buying_advices.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_24_081937_buying_advice_business_profile_article.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BusinessProfileController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_24_082237_create_buying_advice_business_profile_article_table.php" />
@@ -184,6 +194,7 @@
         <option value="$PROJECT_DIR$/resources/views/admin/testimonial/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Testimonial.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TestimonialController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_08_29_044259_create_testimonials_table.php" />
       </list>
     </option>
   </component>
@@ -350,14 +361,6 @@
               <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="about-us" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="business" type="b2602c69:ProjectViewProjectNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="testimonial" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -504,18 +507,18 @@
       <workItem from="1566965065838" duration="23283000" />
       <workItem from="1567005459898" duration="2076000" />
       <workItem from="1567008922989" duration="127000" />
-      <workItem from="1567052489894" duration="4641000" />
+      <workItem from="1567052489894" duration="5193000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="514531000" />
+    <option name="totallyTimeSpent" value="515083000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36535552" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36535552" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -561,16 +564,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/front-end/includes/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="35" selection-start-column="35" selection-end-column="35" />
-          <folding>
-            <element signature="n#header#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/ProfessionTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -804,13 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_28_114258_create_our_features_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_28_085307_create_about_us_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -938,8 +924,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TestimonialController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-163">
-          <caret line="103" column="10" selection-start-line="103" selection-start-column="10" selection-end-line="139" selection-end-column="36" />
+        <state relative-caret-position="149">
+          <caret line="44" column="24" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_28_114258_create_our_features_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_29_044259_create_testimonials_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
