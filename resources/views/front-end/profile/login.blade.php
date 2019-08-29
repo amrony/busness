@@ -42,13 +42,12 @@
                      data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
                 <div class="rd-navbar-aside-outer rd-navbar-collapse bg-gray-dark">
                     <div class="rd-navbar-aside">
-
                         <ul class="social-links">
                             <li  style="color: black;">
                                 <div class="rd-navbar-brand">
                                     <a class="brand" href="{{ url('/') }}">
-                                        <img class="brand-logo-dark"src="{{ asset('back-end/images') }}/logo-default-162x34.png"alt="img"/><img
-                                                class="brand-logo-light" src="{{ asset('back-end/images') }}/logo-inverse-162x34.png" alt="img"/>
+                                        <img class="brand-logo-dark"src="{{ asset('back-end/images') }}/logo-default-162x34.png" alt="img"/>
+                                        <img class="brand-logo-light" src="{{ asset('back-end/images') }}/logo-inverse-162x34.png" alt="img"/>
                                     </a>
                                 </div>
                             </li>
@@ -180,14 +179,14 @@
         <div class="contacts-custom-wrap">
             <div class="container">
                 <div class="row justify-content-lg-start justify-content-center">
-                    <div class="col-xl-6 col-sm-12 col-12 col-lg-6">
+                    <div class="col-xl-6 col-sm-12 col-md-12 col-lg-12 m-auto">
                         <h3 class="text-capitalize wow fadeInLeft" data-wow-delay=".2s">Login to<span
                                     class="text-primary"> Business</span></h3><br>
 
                         <form class="login-form" action="{{ url('/profile/login') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label class="control-label">USERNAME</label>
+                                <label class="control-label">EMAIL</label>
                                 <input class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" type="text" name="email" placeholder="Email" autofocus>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">

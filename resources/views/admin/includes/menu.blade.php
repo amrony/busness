@@ -13,7 +13,8 @@
 
 <ul class="app-menu">
     <li class="treeview">
-        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Company Info</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-building"></i><span
+                    class="app-menu__label">Company Info</span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{ route('view-company') }}"><i class="icon fa fa-circle-o"></i>Add Company Info</a></li>
         </ul>
@@ -21,7 +22,8 @@
 
 
     <li class="treeview">
-        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Page</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-pagelines"></i><span
+                    class="app-menu__label">Page</span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{ route('new-page') }}"><i class="icon fa fa-circle-o"></i>Add Page</a></li>
         </ul>
@@ -39,7 +41,8 @@
     </li>
 
     <li class="treeview">
-        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">News</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-newspaper-o"></i><span
+                    class="app-menu__label">News</span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{ route('news.create') }}"><i class="icon fa fa-circle-o"></i>Add News</a></li>
         </ul>
@@ -47,7 +50,7 @@
 
     <li class="treeview">
         <a class="app-menu__item" href="#" data-toggle="treeview">
-            <i class="app-menu__icon fa fa-edit"></i>
+            <i class="app-menu__icon fa fa-user"></i>
             <span class="app-menu__label">Business Profile</span>
             <i class="treeview-indicator fa fa-angle-right"></i>
         </a>
@@ -71,7 +74,7 @@
 
     <li class="treeview">
         <a class="app-menu__item" href="#" data-toggle="treeview">
-            <i class="app-menu__icon fa fa-edit"></i>
+            <i class="app-menu__icon fa fa-user-md"></i>
             <span class="app-menu__label">Buying Advice</span>
             <i class="treeview-indicator fa fa-angle-right"></i>
         </a>
@@ -80,6 +83,39 @@
                 <a class="treeview-item" href="{{ route('buying-advice.create') }}">
                     <i class="icon fa fa-circle-o"></i>
                     Add Buying Advice
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="treeview">
+        <a class="app-menu__item" href="#" data-toggle="treeview">
+            <i class="app-menu__icon fa fa-home"></i>
+            <span class="app-menu__label">Home Page</span>
+            <i class="treeview-indicator fa fa-angle-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a class="treeview-item" href="{{ route('about_us.create') }}">
+                    <i class="icon fa fa-circle-o"></i>
+                    About us
+                </a>
+            </li>
+        </ul>
+        <ul class="treeview-menu">
+            <li>
+                <a class="treeview-item" href="{{ route('features.create') }}">
+                    <i class="icon fa fa-circle-o"></i>
+                    Our features
+                </a>
+            </li>
+        </ul>
+
+        <ul class="treeview-menu">
+            <li>
+                <a class="treeview-item" href="{{ route('testimonial.create') }}">
+                    <i class="icon fa fa-circle-o"></i>
+                    Testimonial
                 </a>
             </li>
         </ul>

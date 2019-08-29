@@ -18,7 +18,7 @@ class CreateProfileInfosTable extends Migration
             $table->string('first_name');
             $table->unsignedBigInteger('profession_id');
             $table->foreign('profession_id')->references('id')->on('professions');
-            $table->text('your_self');
+            $table->text('your_self')->nullable();
             $table->text('about_me')->nullable();
             $table->text('skill')->nullable();
             $table->text('image')->nullable();

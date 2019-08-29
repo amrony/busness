@@ -42,13 +42,12 @@
                      data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
                 <div class="rd-navbar-aside-outer rd-navbar-collapse bg-gray-dark">
                     <div class="rd-navbar-aside">
-
                         <ul class="social-links">
                             <li  style="color: black;">
                                 <div class="rd-navbar-brand">
                                     <a class="brand" href="{{ url('/') }}">
-                                        <img class="brand-logo-dark"src="{{ asset('back-end/images') }}/logo-default-162x34.png"alt="img"/><img
-                                                class="brand-logo-light" src="{{ asset('back-end/images') }}/logo-inverse-162x34.png" alt="img"/>
+                                        <img class="brand-logo-dark"src="{{ asset('back-end/images') }}/logo-default-162x34.png" alt="img"/>
+                                        <img class="brand-logo-light" src="{{ asset('back-end/images') }}/logo-inverse-162x34.png" alt="img"/>
                                     </a>
                                 </div>
                             </li>
@@ -162,86 +161,89 @@
         </div>
     </header>
     <section id="sec_two" class="section section-intro context-dark">
-        <div class="intro-bg" style="background: url(assets/images/intro-bg-1.jpg) no-repeat;background-size:cover;background-position: top center;"></div>
+        <div class="intro-bg" style="background: url({{ asset('back-end/images') }}/intro-bg-1.jpg) no-repeat;background-size:cover;background-position: top center;"></div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 text-center">
-                    <h1 class="font-weight-bold wow fadeInLeft">Sign up To Business</h1>
+                    <h1 class="font-weight-bold wow fadeInLeft">Signup To Business</h1>
                     <p class="intro-description wow fadeInRight">Feel free to learn more about our team and company on this page. We are always happy to help you!</p>
                 </div>
             </div>
         </div>
     </section>
-  <br><br>
+    <br><br>
+
 
 
     <section class="section position-relative">
         <div class="contacts-custom-wrap">
             <div class="container">
                 <div class="row justify-content-lg-start justify-content-center">
-                    <div class="col-xl-6 col-sm-12 col-12 col-lg-6">
-                        <h3 class="text-capitalize wow fadeInLeft" data-wow-delay=".2s">Sign Up<span class="text-primary"> Business</span></h3>
+                    <div class="col-xl-5 col-sm-12 col-md-12 col-lg-12 m-auto">
+                        <h3 class="text-capitalize wow fadeInLeft" data-wow-delay=".2s">Signup to<span
+                                    class="text-primary"> Business</span></h3><br>
+
                         <form method="POST" action="{{ url('profile/signup') }}">
                             @csrf
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                            <div class="form-group">
+                                <label class="control-label">USER NAME</label>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid
+                                    @enderror" name="name" placeholder="User name" value="{{ old('name') }}" required
+                                           autocomplete="name"
+                                           autofocus>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
+                            <div class="form-group">
+                                <label class="control-label">EMAIL</label>
+                                <input class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                       type="text" name="email" placeholder="Email" autofocus autocomplete="email">
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                    @enderror
-                                </div>
+                                @endif
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <div class="form-group">
+                                <label for="password" class="col-form-label text-md-right">{{ __('Password')}}</label>
+
+                                    <input id="password" type="password" class="form-control @error('password')
+                                    is-invalid @enderror" name="password" placeholder="Password" required
+                                           autocomplete="new-password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                </div>
+                            <div class="form-group">
+                                <label for="password-confirm" class="col-form-label text-md-right">{{ __
+                                ('Confirm Password') }}</label>
+
+
+                                    <input id="password-confirm" type="password" class="form-control"
+                                           name="password_confirmation" placeholder="Confirm password" required
+                                           autocomplete="new-password">
                             </div>
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                            <div class="form-group  mb-0">
+                                    <button type="submit" class="btn-block btn btn-primary">
                                         {{ __('Register') }}
                                     </button>
-                                </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -254,7 +256,7 @@
         <div class="container">
             <div class="row row-30">
                 <div class="col-lg-3 wow fadeInLeft">
-                    <!--Brand--><a class="brand" href="index-2.html"><img class="brand-logo-dark" src="{{ asset('front-end') }}/images/logo-default-162x34.png" alt="img" /><img class="brand-logo-light" src="assets/images/logo-inverse-162x34.png" alt="img" /></a>
+                    <!--Brand--><a class="brand" href="{{ url('/') }}"><img class="brand-logo-dark" src="{{ asset('front-end') }}/images/logo-default-162x34.png" alt="img" /><img class="brand-logo-light" src="assets/images/logo-inverse-162x34.png" alt="img" /></a>
                     <p class="footer-classic-description offset-top-0 offset-right-25">Cemeriss provides a full range of business consulting & advisory services to small, medium, and international companies worldwide. We use innovations and experience to drive your success.</p>
                 </div>
                 <div class="col-lg-3 col-sm-8 wow fadeInUp">

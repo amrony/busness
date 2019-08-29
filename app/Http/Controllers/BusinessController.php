@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdditionalBuyingAdvice;
 use App\ArticleCategory;
 use App\ArticleSubCategory;
 use App\BuyingAdvice;
@@ -154,8 +155,14 @@ class BusinessController extends Controller
     public function viewBuying($id){
         $buyingGuide = BuyingAdvice::find($id);
         $profileArticles = BuyingAdviceBusinessProfileArticle::where('buying_advice_id', $id)->get();
-//        dd($buyingArticles);
-        return view('front-end.menubar.buying-guides.index', compact('buyingGuide','profileArticles'));
+        $addBuyingAdvices = AdditionalBuyingAdvice::all();
+//        dd($addBuyingAdvices);
+        return view('front-end.menubar.buying-guides.index',
+            compact(
+                'buyingGuide',
+                'profileArticles',
+                'addBuyingAdvices'
+            ));
     }
 
 

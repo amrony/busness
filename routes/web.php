@@ -11,7 +11,13 @@
 |
 */
 
+Route::resource('/about_us','AboutUsController');
+Route::get('/about_us/delete/{id}','AboutUsController@destroy')->name('about_us.delete');
 
+Route::resource('/features','OurFeaturesController');
+Route::get('/features/delete/{id}','OurFeaturesController@destroy')->name('delete-feature');
+
+Route::resource('/testimonial','TestimonialController');
 
 
 Route::post('/company/store', 'CompanyController@store')->name('add-company');
